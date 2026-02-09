@@ -1,0 +1,17 @@
+package com.example.demo.service;
+import com.example.demo.model.Item;
+import org.springframework.stereotype.Service;
+import java.util.*;
+@Service
+public class ItemService {
+  private final List<Item> items=new ArrayList<>();
+  private int counter=1;
+  public Item addItem(Item item){
+    item.setId(counter++);
+    items.add(item);
+    return item;
+  }
+  public Item getItemById(int id){
+    return items.stream().filter(i->i.getId()==id).findFirst().orElse(null);
+  }
+}
